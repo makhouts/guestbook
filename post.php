@@ -14,6 +14,9 @@ class Post {
     }
 
     function addPost($title, $content, $author) {
+        $title = htmlspecialchars($title);
+        $content = htmlspecialchars($content);
+        $author = htmlspecialchars($author);
         $data = json_decode(file_get_contents($this->file));
         $data[] = array( 
             'title' => $title,
