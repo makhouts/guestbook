@@ -5,6 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guestbook</title>
+    <style>
+        input {
+            margin: auto;
+            max-width: 280px;
+            height: 25px;
+            text-align: center;
+            border-radius: 5px;
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <?php
     require 'post.php';
@@ -26,6 +36,7 @@
     </form>
     <?php require 'postLoader.php';
         $postLoader = new PostLoader();
+        $postLoader->addPost($post);
     ?>
 </body>
 </html>

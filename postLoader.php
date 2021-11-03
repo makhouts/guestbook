@@ -22,6 +22,23 @@ class PostLoader {
 
         } else {
             echo 'No file.';
+            $createFile = fopen($this->file, 'w');
+            header('Refresh:0');
         };
+    }
+
+    function addPost($post) {
+        $title = htmlspecialchars($post->getTitle());
+        $content = htmlspecialchars($post->getContent());
+        $author = htmlspecialchars($post->getAuthor());
+        $data = json_decode(file_get_contents($this->file));
+        $data[] = array( 
+            'title' => $title,
+            'content' => $content,
+            'author' => $author,
+            'date' => date('d-m-y')
+        ); 
+        $json = json_encode($data);
+        file_put_contents($this->file, $json);
     }
 };

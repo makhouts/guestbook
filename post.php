@@ -3,28 +3,25 @@
 class Post {
 
     private $file = 'data.json';
+    private $title;
+    private $content;
+    private $author;
 
     function __construct($title, $content, $author) {
-        if(file_exists($this->file)) {
-            $this->addPost($title, $content, $author);
-        } else {
-            $createFile = fopen($this->file, 'w');
-            header('Refresh:0');
-        }
+        $this->title = $title;
+        $this->content = $title;
+        $this->author = $title;
     }
 
-    function addPost($title, $content, $author) {
-        $title = htmlspecialchars($title);
-        $content = htmlspecialchars($content);
-        $author = htmlspecialchars($author);
-        $data = json_decode(file_get_contents($this->file));
-        $data[] = array( 
-            'title' => $title,
-            'content' => $content,
-            'author' => $author,
-            'date' => date('d-m-y')
-        ); 
-        $json = json_encode($data);
-        file_put_contents($this->file, $json);
+    function getTitle() {
+        return $this->title;
+    }
+
+    function getContent() {
+        return $this->content;
+    }
+
+    function getAuthor() {
+        return $this->author;
     }
 }
