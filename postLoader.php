@@ -7,17 +7,16 @@ class PostLoader {
         
     }
 
-    function showPosts() {
+    function showPosts($showList) {
         if(file_exists($this->file)) {
             $current = file_get_contents($this->file);
             $x = json_decode($current);
         if(!empty($x)) {
             $y = array_reverse($x);
-            $z = array_slice($y, 0, 20);
+            $z = array_slice($y, 0, $showList);
             
             foreach($z as $key=>$info) {
                 ?>
-                    
                     <div class='result'>
                     <?php echo $key +1 . ' ' ?>
                         <label><strong>Title:</strong> <span><?php echo $info->title ?></span></label>

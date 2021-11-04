@@ -48,7 +48,18 @@
         <input type="text" name='authorName' placeholder='Name'>
         <input type="submit" name='post' value="Post">
     </form>
-    
-    <?php $postLoader->showPosts(); ?>
+    <br>
+    <form action="" method='POST'>
+        <input type="text" name='showPosts' placeholder='Amount posts to display?'>
+        <input type="submit" name='sendPosts' value="Show">
+    </form>
+
+    <?php
+        $showList = 20;
+        if(isset($_POST['sendPosts']) && $_POST['showPosts'] >= 1 && $_POST['showPosts'] <= 20) {
+            $showList = $_POST['showPosts'];
+        }
+        $postLoader->showPosts($showList); 
+    ?>
 </body>
 </html>
