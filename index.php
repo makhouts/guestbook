@@ -1,3 +1,17 @@
+<?php
+    require 'post.php';
+    require 'postLoader.php';
+    $postLoader = new PostLoader();
+
+    if(isset($_POST['post'])) {
+        $title = $_POST['title'];
+        $content = $_POST['content'];
+        $authorName = $_POST['authorName'];
+        $post = new Post($title, $content, $authorName);
+        $postLoader->addPost($post);
+    }
+    
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,19 +28,19 @@
             border-radius: 5px;
             border: 1px solid black;
         }
+        .result {
+            display: inline-flex;
+            margin: 10px;
+            box-shadow: 0px 0px 16px -5px rgba(0,0,0,0.24);
+            background-color: lightgray;
+            color: black;
+            font-family: Verdana;
+        }
+        label {
+            padding: 0px 15px;
+        }
     </style>
 </head>
-<?php
-    require 'post.php';
-
-    if(isset($_POST['post'])) {
-        $title = $_POST['title'];
-        $content = $_POST['content'];
-        $authorName = $_POST['authorName'];
-        $post = new Post($title, $content, $authorName);
-    }
-
-?>
 <body>
     <form action="" method='POST'>
         <input type="text" name='title' placeholder='Title'>
@@ -34,9 +48,7 @@
         <input type="text" name='authorName' placeholder='Name'>
         <input type="submit" name='post' value="Post">
     </form>
-    <?php require 'postLoader.php';
-        $postLoader = new PostLoader();
-        $postLoader->addPost($post);
-    ?>
+    
+    <?php $postLoader->showPosts(); ?>
 </body>
 </html>
